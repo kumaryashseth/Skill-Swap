@@ -8,14 +8,15 @@ dotenv.config();
 
 const app = express();
 
-// Middleware
+app.set("view engine", "ejs");
+app.set("views", "./views");
 app.use(express.json());
 app.use(cors());
 
-// Connect DB
+
 connectDB();
 
-// Routes
+
 app.use("/api/auth", require("./routes/authRoutes"));
 app.use("/api/users", require("./routes/userRoutes"));
 app.use("/api/skills", require("./routes/skillRoutes"));
