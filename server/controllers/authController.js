@@ -1,10 +1,10 @@
 const User = require("../models/userModel");
-const generateToken = require("../utils/generateToken");
+const {generateToken,verifyToken}=require("../utils/generateToken");
 
 
 const registerUser = async (req, res) => {
   const { name, email, password } = req.body;
-
+console.log("biii")
   try {
     // Check if user exists
     const userExists = await User.findOne({ email });
@@ -20,16 +20,13 @@ const registerUser = async (req, res) => {
     });
 
     if (user) {
-      res.status(201).json({
-        _id: user.id,
-        name: user.name,
-        email: user.email,
-        role: user.role,
-        token: generateToken(user._id, user.role),
-      });
+      res.status(201).json({user});
+
+
     } else {
       res.status(400).json({ message: "Invalid user data" });
     }
+
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -38,7 +35,7 @@ const registerUser = async (req, res) => {
 
 const loginUser = async (req, res) => {
   const { email, password } = req.body;
-
+console.log(email , password)
   try {
     const user = await User.findOne({ email });
 
@@ -47,8 +44,7 @@ const loginUser = async (req, res) => {
         _id: user.id,
         name: user.name,
         email: user.email,
-        role: user.role,
-        token: generateToken(user._id, user.role),
+        token: generateToken(user._id,user.role),
       });
     } else {
       res.status(401).json({ message: "Invalid email or password" });
