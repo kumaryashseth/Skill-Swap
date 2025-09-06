@@ -8,17 +8,16 @@
   <body>
     <h1>Sign Up</h1>
     <form action="/api/auth/register" method="POST">
-      <label for="FirstName">FirstName:</label>
-      <input type="text" id="FirstName" name="FirstName" required />
-      <br />
-      <label for="lastName">lastName:</label>
-      <input type="text" id="lastName" name="lastName" required />
+      <label for="Name">Name:</label>
+      <input type="text" id="name" name="name" required />
       <br />
       <label for="email">Email:</label>
       <input type="email" id="email" name="email" required />
       <br />
       <label for="gender">Gender:</label>
-      <input type="text" id="gender" name="gender" required />
+      <input type="radio" id="gender" name="gender" value="male" required /> Male
+      <input type="radio" id="gender" name="gender" value="female" required /> Female
+      <input type="radio" id="gender" name="gender" value="other" required /> Other
       <br />
       <label for="skill">Skill:</label>
       <input type="text" id="skill" name="skill" required />

@@ -3,8 +3,8 @@ const {generateToken,verifyToken}=require("../utils/generateToken");
 
 
 const registerUser = async (req, res) => {
-  const { name, email, password } = req.body;
-console.log("biii")
+  const { name, email, password, gender, skill } = req.body;
+
   try {
     // Check if user exists
     const userExists = await User.findOne({ email });
@@ -17,6 +17,8 @@ console.log("biii")
       name,
       email,
       password,
+      gender,
+      skill 
     });
 
     if (user) {
