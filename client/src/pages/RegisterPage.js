@@ -23,7 +23,7 @@ const register = async (e) => {
   }
 };
 
-}
+
   return (
     <Container maxWidth="xs">
       <Box sx={{ mt: 8, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
@@ -88,6 +88,6 @@ const register = async (e) => {
       </Box>
     </Container>
   );
-
+}
 
 export default RegisterPage;

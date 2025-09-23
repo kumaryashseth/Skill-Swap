@@ -1,20 +1,38 @@
 import React from 'react';
 import { Container, Typography, Grid, Card, CardContent, CardActions, Button } from '@mui/material';
+import Api from '../Api';
+import { useEffect } from 'react';
+import { useState } from 'react';
 
-const skills = [
-  { id: 1, name: 'Learn Guitar', user: 'John Doe' },
-  { id: 2, name: 'Baking Masterclass', user: 'Jane Smith' },
-  { id: 3, name: 'Introduction to React', user: 'Peter Jones' },
-];
+
 
 const DashboardPage = () => {
+  const [name,setName] = useState("");
+
+useEffect(()=>{
+
+    const user = async()=>{
+         const token = localStorage.getItem("token")
+         const res = await Api("/users/profile",{
+          headers:{
+            Authorization:`Bearer ${token}`
+          }
+         })
+         console.log(res.data)
+         setName(res.data.name)
+  }
+  user()
+
+},[])
+
   return (
     <Container maxWidth="lg" sx={{ mt: 4 }}>
       <Typography variant="h4" gutterBottom>
         Available Skills
       </Typography>
       <Grid container spacing={4}>
-        {skills.map((skill) => (
+         <Typography> {name} </Typography>
+        {/* {skills.map((skill) => (
           <Grid item key={skill.id} xs={12} sm={6} md={4}>
             <Card>
               <CardContent>
@@ -31,7 +49,7 @@ const DashboardPage = () => {
               </CardActions>
             </Card>
           </Grid>
-        ))}
+        ))} */}
       </Grid>
     </Container>
   );
