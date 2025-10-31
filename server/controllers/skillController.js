@@ -32,6 +32,11 @@ const updateSkill = async (req, res) => {
   try {
     const skill = await Skill.findById(req.params.id);
 
+    console.log(req.params.id);
+    console.log(skill);
+    
+    
+
     if (!skill) return res.status(404).json({ message: "Skill not found" });
     if (skill.user.toString() !== req.user._id.toString())
       return res.status(401).json({ message: "Not authorized" });

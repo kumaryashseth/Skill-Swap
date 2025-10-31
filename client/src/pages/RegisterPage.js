@@ -16,9 +16,14 @@ const register = async (e) => {
   e.preventDefault();
 
   try {
-    const res = await Api.post("/auth/register", form); 
+    const token = localStorage.getItem("token")
+    const res = await Api.post("/auth/register", form );
+    
+    
     console.log(res.data); 
+
   } catch (err) {
+    
     console.error(err.response?.data || err.message);
   }
 };
